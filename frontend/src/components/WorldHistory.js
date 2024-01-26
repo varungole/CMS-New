@@ -1,40 +1,46 @@
-import React, { useEffect , useState } from 'react'
-import Blog from './Blog'
+  import React, { useEffect , useState } from 'react'
+  import Blog from './Blog'
+  import { useNavigate } from 'react-router-dom';
 
-function WorldHistory() {
-  const[data , setData] = useState([]);
+  function WorldHistory() {
+    const[data , setData] = useState([]);
 
 
- useEffect(() => {
-  const url = "http://localhost:4050/blogs";
+  useEffect(() => {
+    const url = "http://localhost:4050/blogs";
 
-  const fetchData = async() => {
-    try{
-      const response = await fetch(url);
-      const json = await response.json();
-     setData(json);
-    }catch(error) {
-      console.log("error" , error);
-    }
-  };
+    const fetchData = async() => {
+      try{
+        const response = await fetch(url);
+        const json = await response.json();
+      setData(json);
+      }catch(error) {
+        console.log("error" , error);
+      }
+    };
 
-  fetchData();
- } , []);
+    fetchData();
+  } , []);
 
- console.log(data.title);
+  const navigate = useNavigate();
 
-  return (
-    <div className='main-page'>
-      <h1 className='contribution'>Want to create your own blog? <a href='/contribute'>Contribute here!</a></h1>
+  const handleClick = (title , actualBlog , description ,author) => {
+    navigate('/blog',{state:{title:title,actualBlog:actualBlog , description:description , author:author}});
+  }
 
-   <div className='world-history-blogs'>
-   {data.map((obj, index) => (
-        <Blog title={obj.title} description={obj.description} />
-      ))}
-  
-   </div>
-   </div>
-  )
-}
 
-export default WorldHistory
+    return (
+      <div className='main-page'>
+        <h1 className='contribution'>Want to create your own blog? <a href='/contribute'>Contribute here!</a></h1>
+
+    <div className='world-history-blogs'>
+    {data.map((obj, index) => (
+          <Blog title={obj.title} description={obj.description} onClick={()=> {handleClick(obj.title , obj.actualBlog , obj.description , obj.author)}}/>
+        ))}
+    
+    </div>
+    </div>
+    )
+  }
+
+  export default WorldHistory

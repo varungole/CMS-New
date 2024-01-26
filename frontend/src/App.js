@@ -7,6 +7,7 @@ import ComputerScience from './components/ComputerScience'
 import Football from './components/Football'
 import Contribute from './components/Contribute';
 import Success from './components/Success';
+import ActualBlog from './components/ActualBlog';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/football' element={<Football/>}></Route>
         <Route path='/contribute' element={<Contribute />}></Route>
         <Route path='/success' element={<Success />}></Route>
+        <Route path='/blog' element={<ActualBlog />}></Route>
       </Routes>
       </BrowserRouter>
    

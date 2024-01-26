@@ -19,7 +19,7 @@ const blogSchema = new Schema(
         author: {
             type: String,
             required: true
-        },
+        },        
     }
 )
 
