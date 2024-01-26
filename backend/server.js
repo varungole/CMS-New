@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(cors())
 
 
-mongoose.connect("", {
+mongoose.connect(" ", {
 
 })
   .then(() => console.log("Connected to Database"))
