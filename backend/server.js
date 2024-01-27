@@ -11,7 +11,6 @@ app.use(cors())
 
 
 mongoose.connect("", {
-
 })
   .then(() => console.log("Connected to Database"))
   .catch(console.error);
