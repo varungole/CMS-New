@@ -13,7 +13,8 @@
         try{
           const response = await fetch(url);
           const json = await response.json();
-        setData(json);
+          const filteredHistory = json.filter((item => item.genre === "History"));
+        setData(filteredHistory);
         }catch(error) {
           console.log("error" , error);
         }
@@ -24,8 +25,8 @@
 
     const navigate = useNavigate();
 
-    const handleClick = (title , actualBlog , description ,author) => {
-      navigate('/blog',{state:{title:title,actualBlog:actualBlog , description:description , author:author}});
+    const handleClick = (title , actualBlog , description ,author , genre) => {
+      navigate('/blog',{state:{title:title,actualBlog:actualBlog , description:description , author:author , genre:genre}});
     }
 
     const deleteClick = async (_id) => {
@@ -51,7 +52,7 @@
 
       <div className='world-history-blogs'>
       {data.map((obj, index) => (
-            <Blog title={obj.title} description={obj.description} onClick={()=> {handleClick(obj.title , obj.actualBlog , obj.description , obj.author)}} onDeleteClick={() => {deleteClick(obj._id)}}/>
+            <Blog title={obj.title} description={obj.description} onClick={()=> {handleClick(obj.title , obj.actualBlog , obj.description , obj.author, obj.genre)}} onDeleteClick={() => {deleteClick(obj._id)}}/>
           ))}
       
       </div>

@@ -7,6 +7,7 @@ function Contribute() {
   const[blogDescription , setBlogDescription] = useState('');
   const[blogActual , setblogActual] = useState('');
   const[blogAuthor , setBlogAuthor] = useState('');
+  const[blogGenre, setBlogGenre] = useState('');
 
   const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ function Contribute() {
         description: blogDescription,
         actualBlog: blogActual,
         author: blogAuthor,
+        genre: blogGenre,
       }),
     });
 
@@ -35,6 +37,7 @@ function Contribute() {
     setBlogDescription('')
     setblogActual('')
     setBlogAuthor('')
+    setBlogGenre('')
   };
 
   return (
@@ -49,7 +52,20 @@ function Contribute() {
             <input type='text' className='blog-actual-input'  value={blogActual} onChange={(e) => setblogActual(e.target.value)}required></input>
             <h2 className='blog-author'>Enter name of the author</h2>
             <input className='blog-author-input'  value={blogAuthor} onChange={(e) => setBlogAuthor(e.target.value)}required></input>
-            <button className='submit'>Submit</button>
+            <h2 className='blog-genre'>Please select genre</h2>
+  <select
+    className='genre'
+    value={blogGenre}
+    onChange={(e) => setBlogGenre(e.target.value)}
+    required
+  >
+    <option value='' disabled>Select a genre</option>
+    <option value='History'>History</option>
+    <option value='Geography'>Geography</option>
+    <option value='ComputerScience'>Computer Science</option>
+    <option value='Football'>Football</option>
+  </select>
+  <button className='submit'>Submit</button>
             </form>
         </div>
     </div>
